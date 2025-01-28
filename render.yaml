@@ -3,11 +3,13 @@ services:
     name: medical-prediction-api
     env: python
     buildCommand: |
-      pip install setuptools wheel
-      pip install -r requirements.txt
+      python -m pip install --upgrade pip
+      python -m pip install python-distutils-extra
+      python -m pip install setuptools wheel
+      python -m pip install -r requirements.txt
     startCommand: gunicorn --workers 1 --timeout 120 app:app
     envVars:
       - key: PYTHON_VERSION
-        value: 3.10.12
+        value: 3.9.18
       - key: PYTHONUNBUFFERED
         value: "true"
