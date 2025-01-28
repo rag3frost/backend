@@ -2,8 +2,12 @@ services:
   - type: web
     name: medical-prediction-api
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
+    buildCommand: |
+      pip install setuptools wheel
+      pip install -r requirements.txt
+    startCommand: gunicorn --workers 1 --timeout 120 app:app
     envVars:
       - key: PYTHON_VERSION
-        value: 3.8.12
+        value: 3.10.12
+      - key: PYTHONUNBUFFERED
+        value: "true"
