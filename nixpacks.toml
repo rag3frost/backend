@@ -1,13 +1,1 @@
-[phases.setup]
-nixPkgs = ['python38', 'gcc', 'python38Packages.pip', 'python38Packages.virtualenv']
 
-[phases.install]
-cmds = [
-  'python -m venv /opt/venv',
-  '. /opt/venv/bin/activate',
-  'pip install --upgrade pip setuptools',
-  'pip install -r requirements.txt'
-]
-
-[start]
-cmd = 'gunicorn app:app'
