@@ -1,8 +1,9 @@
 setuptools
 flask
-flask-corS
+flask-cors
 numpy
 pandas
 scikit-learn
 joblib
-gunicorn
+waitress
+
