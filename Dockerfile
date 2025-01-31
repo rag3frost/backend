@@ -2,7 +2,7 @@
 FROM python:3.9-slim
 
 #wd
-WORKDIR .
+WORKDIR /app
 
 #python dep
 COPY requirements.txt .
