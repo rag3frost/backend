@@ -40,6 +40,10 @@ def load_all_models():
         print(f"Error loading models: {str(e)}")
         return False
 
+# Load models at startup
+if not load_all_models():
+    raise RuntimeError("Failed to load models. Please check if model files exist and are accessible.")
+
 @app.route('/', methods=['GET'])
 def home():
     return jsonify({
@@ -151,7 +155,6 @@ def health_check():
     })
 
 if __name__ == '__main__':
-    if load_all_models():
-        print("All models loaded successfully!")
-        port = int(os.environ.get('PORT', 5000))
-        app.run(host='0.0.0.0', port=port)
+    from waitress import serve
+    port = int(os.environ.get('PORT', 5000))
+    serve(app, host='0.0.0.0', port=port)
